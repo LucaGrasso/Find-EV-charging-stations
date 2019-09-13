@@ -1,11 +1,17 @@
-// server.js
+/ server.js
 // where your node app starts
+// example call http://find-ev-charging-stations.glitch.me/trova-colonnine/?longitude=40&latitude8&minpowerkw=22
 
 // init project
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
-app.use(bodyParser.urlencoded({ extended: true }));
+
+// The middleware to handle url encoded data is returned by bodyParser.urlencoded({extended: false}).
+// extended=falseis a configuration option that tells the parser to use the classic encoding.
+// When using it, values can be only strings or arrays.
+// The extended version allows more data flexibility, but it is outmatched by JSON. 
+app.use(bodyParser.urlencoded({ extended: true })); //ritorno in JSON
 
 // we've started you off with Express, 
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
