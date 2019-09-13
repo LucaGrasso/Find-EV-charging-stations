@@ -97,7 +97,7 @@ app.get('/trova-colonnine', function (req, res) {
 					
 			for(var j=0; arrayconnections.length; j++){
 				var minpow = parseFloat(req.query.minpowerkw);
-        console.log(arrayconnections[j].PowerKW);
+        
 				if(arrayconnections[j].PowerKW != 'undefined' && arrayconnections[j].PowerKW >= minpow) {
 					
 					if(dist < mindist || mindist == 0) {

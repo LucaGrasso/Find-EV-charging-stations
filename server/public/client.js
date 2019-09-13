@@ -1,4 +1,4 @@
-/ client-side js
+// client-side js
 // run by the browser each time your view template referencing it is loaded
 
 console.log('hello world :o');
@@ -30,6 +30,8 @@ const getCommentsListener = function() {
 }
 
 const getColsListener = function() {
+  
+  colsList.innerHTML = "";
   // parse our response to convert to JSON
   cols = JSON.parse(this.responseText);
 
@@ -63,8 +65,8 @@ colsForm.onsubmit = function(event) {
   event.preventDefault();
 
   const colRequest = new XMLHttpRequest();
-//colRequest.onload = getColsListener;
-colRequest.open('get', '/trova-colonnine/?latitudine=' + latitudineInput.value + "&longitudine=" + longitudineInput.value + "&minpowerkw=" + minpowerkwInput.value);
+colRequest.onload = getColsListener;
+colRequest.open('get', '/trova-colonnine/?latitude=' + latitudineInput.value + "&longitude=" + longitudineInput.value + "&minpowerkw=" + minpowerkwInput.value);
 colRequest.send();
   
   // reset form 
