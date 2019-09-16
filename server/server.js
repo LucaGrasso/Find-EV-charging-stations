@@ -1,11 +1,27 @@
-/ server.js
-// where your node app starts
-// example call http://find-ev-charging-stations.glitch.me/trova-colonnine/?longitude=40&latitude8&minpowerkw=22
+// author: Luca Grasso
+// Exam project
 
-// init project
-var express = require('express');
-var bodyParser = require('body-parser');
-var app = express();
+/* I file del server sono caricati su 
+http://find-ev-charging-stations.glitch.me/ */
+
+// I commenti in inglese fanno riferimento alle documentazioni della libreria
+
+/*****************************************************************************/
+/*                                   server.js								 */
+/*								It's a nodeJS app			                 */
+/*****************************************************************************/
+
+/* Esempio di get 
+http://find-ev-charging-stations.glitch.me/trova-colonnine/?longitude=40&latitude8&minpowerkw=2
+*/
+
+
+/*                                 Init project                               */
+/*----------------------------------------------------------------------------*/
+/*              carico le librerie necessarie al progetto                     */
+var express = require('express');        // dipendenza di nodejs per ascoltare sulla porta 3000 vedi documentazione nodeJS
+var bodyParser = require('body-parser'); // carico il body-parse per estrarre informazioni dalla request e respost
+var app = express();					 // si avvia l'applicazione server come express in ascolto su 3000
 
 // The middleware to handle url encoded data is returned by bodyParser.urlencoded({extended: false}).
 // extended=falseis a configuration option that tells the parser to use the classic encoding.
@@ -13,44 +29,53 @@ var app = express();
 // The extended version allows more data flexibility, but it is outmatched by JSON. 
 app.use(bodyParser.urlencoded({ extended: true })); //ritorno in JSON
 
-// we've started you off with Express, 
-// but feel free to use whatever libs or frameworks you'd like through `package.json`.
-
-// http://expressjs.com/en/starter/static-files.html
-app.use(express.static('public'));
-
-// init sqlite db
-var fs = require('fs');
-var dbFile = 'sqlite.db';
-var exists = fs.existsSync(dbFile);
-var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database(dbFile);
+/*Express, by default does not allow you to serve static files.
+  You need to enable it using the following built-in middleware.
+  Express looks up the files relative to the static directory,
+  so the name of the static directory is not part of the URL.*/
+// Indico a express di utilizzare il file Js/Css nella cartella Public utile per la versione web del client di test
+  app.use(express.static('public'));     
+									
+// INIZIALIZZAZIONE DATABASE SQLITE
+/***********************************************************************/
+// variabili per inizializzare un server sqlite per i commenti
+var fs = require('fs');                     // require del Nodejs
+var dbFile = 'sqlite.db';					// definisco il nome del file db da utilizzare
+var exists = fs.existsSync(dbFile);         // variabile per verifica dell'esistenza del file
+var sqlite3 = require('sqlite3').verbose(); // il modulo della dipendenza deve essere chiamato prima dell'utilizzo
+var db = new sqlite3.Database(dbFile);      // creo l'oggetto per la lettura del database
 
 // if ./.data/sqlite.db does not exist, create it, otherwise print records to console
+// se non esiste il Database viene creato con colonne specifiche per il progetto
 db.serialize(function(){
-  if (!exists) {
-    db.run('CREATE TABLE Commenti (commento TEXT, colonnina INT)');
-    console.log('New table Commenti created!');
+  if (!exists) {														// se non esiste
+    db.run('CREATE TABLE Commenti (commento TEXT, colonnina INT)');     // creo la tabella Commento e colonnina numeto
+    console.log('New table Commenti created!');							// mando nel log la creazione
     
-    // insert default dreams
+	// insert default dreams
+	// creo un record di test sembra necessario per la creazione
     db.serialize(function() {
-      db.run('INSERT INTO Commenti (commento, colonnina) VALUES ("ok", "01")');
+      db.run('INSERT INTO Commenti (commento, colonnina) VALUES ("ok", "01")');  // inserito record OK,01
     });
   }
-  else {
-    console.log('Database "Commenti" ready to go!');
-    db.each('SELECT * from Commenti', function(err, row) {
-      if ( row ) {
-        console.log('record:', row);
+  else {													// se esiste 
+    console.log('Database "Commenti" ready to go!');		// mando in console il messaggio di commenti ready
+    db.each('SELECT * from Commenti', function(err, row) {  // query per la selezione di tutti i commenti per stamparli fino a errore o fine db
+      if ( row ) {											// se ho un record valido
+        console.log('record:', row);						// stampo la riga
       }
     });
   }
 });
 
+
+/*					START APPLICATION                            */
+/*****************************************************************/
 // http://expressjs.com/en/starter/basic-routing.html
 app.get('/', function(request, response) {
-  response.sendFile(__dirname + '/views/index.html');
+  response.sendFile(__dirname + '/views/index.html'); // l'applicazione parte client di test parte da questo punto
 });
+
 
 // endpoint to get all the dreams in the database
 // currently this is the only endpoint, ie. adding dreams won't update the database
