@@ -60,6 +60,15 @@ button:active {
   box-shadow: none;
 }
 
+button.disattivo {
+  font-size: 16px;
+  border-radius: 3px;
+  background-color: lightgrey;
+  border: 1px solid grey;
+  box-shadow: 2px 2px teal;
+  cursor: pointer;
+}
+
 li {
   margin-bottom: 5px;
 }

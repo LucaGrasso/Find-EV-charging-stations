@@ -6,8 +6,7 @@ http://find-ev-charging-stations.glitch.me/ */
 
 // I commenti in inglese fanno riferimento alle documentazioni della libreria
 
-/*****************************************************************************/
-/*                                   server.js								 */
+/*                                   SERVER.JS								 */
 /*								It's a nodeJS app			                 */
 /*****************************************************************************/
 
@@ -82,7 +81,7 @@ app.get('/', function(request, response) {
 // read the sqlite3 module docs and try to add your own! https://www.npmjs.com/package/sqlite3
 app.get('/getCommenti', function(request, response) {
   db.all('SELECT * from Commenti', function(err, rows) {
-    response.send(JSON.stringify(rows));
+	response.send(JSON.stringify(rows));
   });
 });
 
