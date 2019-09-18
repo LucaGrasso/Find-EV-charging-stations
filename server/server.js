@@ -125,7 +125,7 @@ app.get('/trova-colonnine', function (req, res) {
 					{ latitude: parseFloat(lat), longitude: parseFloat(lon) }
 				);
 					
-			for(var j=0; arrayconnections.length; j++){
+			for(var j=0; j<arrayconnections.length; j++){
 				var minpow = parseFloat(req.query.minpowerkw);
         
 				if(arrayconnections[j].PowerKW != 'undefined' && arrayconnections[j].PowerKW >= minpow) {
