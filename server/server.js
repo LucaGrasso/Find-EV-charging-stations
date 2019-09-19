@@ -1,23 +1,29 @@
 // author: Luca Grasso
-// Exam project
+// Exam project Piattaforme Digitali per il territorio
+// Sessione Autunno 2019
 
-/* I file del server sono caricati su 
-http://find-ev-charging-stations.glitch.me/ */
+/***********************************************/
+/* I file relativi al server sono caricati su  */
+/*                                             */
+/* http://find-ev-charging-stations.glitch.me/ */
+/*                                             */
+/***********************************************/
 
-// I commenti in inglese fanno riferimento alle documentazioni della libreria
 
 /*                                   SERVER.JS								 */
 /*								It's a nodeJS app			                 */
 /*****************************************************************************/
 
-/* Esempio di get 
-http://find-ev-charging-stations.glitch.me/trova-colonnine/?longitude=40&latitude8&minpowerkw=2
-*/
+// Esempio di get 
+// http://find-ev-charging-stations.glitch.me/trova-colonnine/?longitude=40&latitude=8&minpowerkw=2
+//
+// I commenti in inglese fanno riferimento alle documentazioni delle librerie e tutorial
 
 
 /*                                 Init project                               */
 /*----------------------------------------------------------------------------*/
-/*              carico le librerie necessarie al progetto                     */
+
+//carico le librerie necessarie al progetto 
 var express = require('express');        // dipendenza di nodejs per ascoltare sulla porta 3000 vedi documentazione nodeJS
 var bodyParser = require('body-parser'); // carico il body-parse per estrarre informazioni dalla request e respost
 var app = express();					 // si avvia l'applicazione server come express in ascolto su 3000
@@ -35,8 +41,10 @@ app.use(bodyParser.urlencoded({ extended: true })); //ritorno in JSON
 // Indico a express di utilizzare il file Js/Css nella cartella Public utile per la versione web del client di test
   app.use(express.static('public'));     
 									
-// INIZIALIZZAZIONE DATABASE SQLITE
+
+  // INIZIALIZZAZIONE DATABASE SQLITE
 /***********************************************************************/
+
 // variabili per inizializzare un server sqlite per i commenti
 var fs = require('fs');                     // require del Nodejs
 var dbFile = 'sqlite.db';					// definisco il nome del file db da utilizzare
@@ -67,41 +75,46 @@ db.serialize(function(){
   }
 });
 
-
 /*					START APPLICATION                            */
 /*****************************************************************/
 // http://expressjs.com/en/starter/basic-routing.html
+
+
 app.get('/', function(request, response) {
   response.sendFile(__dirname + '/views/index.html'); // l'applicazione parte client di test parte da questo punto
 });
 
-
 // endpoint to get all the dreams in the database
 // currently this is the only endpoint, ie. adding dreams won't update the database
 // read the sqlite3 module docs and try to add your own! https://www.npmjs.com/package/sqlite3
-app.get('/getCommenti', function(request, response) {
-  db.all('SELECT * from Commenti', function(err, rows) {
-	response.send(JSON.stringify(rows));
+
+// 1) Metoto GET per leggere tutti i commenti presenti nel database
+app.get('/getCommenti', function(request, response) {    // /getCommenti chiamata attesa
+  db.all('SELECT * from Commenti', function(err, rows) { // query di selezione dalla tabella commenti
+	response.send(JSON.stringify(rows)); 				 // rispondo alla chiamata con un JSON convertito in stringa
   });
 });
 
-app.post('/storeComment', (request, response) => {
-  const postBody = request.body;
-  db.run(`INSERT INTO Commenti(commento, colonnina) VALUES(?, ?)`, [postBody.commento, postBody.colonnina], function(err) {
-    if (err) {
-      return console.log(err.message);
-    }
-    // get the last insert id
-    console.log(`A row has been inserted with rowid ${this.lastID}`);
+// 2) metodo POST per scrivere un commento nel database
+app.post('/storeComment', (request, response) => {                    // /storeComment metodo atteso
+  const postBody = request.body;	                                  // prendo il body da http che avrà il commento e la colonnina id
+  db.run(`INSERT INTO Commenti(commento, colonnina) VALUES(?, ?)`, [postBody.commento, postBody.colonnina], function(err) { // query di inserimento
+    if (err) {  										  			  // se ho un errore nel reperire le informazioni dal Body
+      return console.log(err.message);					     		  // metto un messaggio in console
+	}
+    console.log(`A row has been inserted with rowid ${this.lastID}`); // metto in console il messaggio di insetimento
   });
-  response.sendFile('views/index.html', {root: __dirname })
+  response.sendFile('views/index.html', {root: __dirname }) 		  // rispondo al servizio
 });
+
+// 3) Metodo GET per ricerca della colonnina con parametri di longitudine latitudine e potenza minima della torretta
+// ho utilizzato una libreria geolib per trovare la distanza minima tramite longitudine e latitudine
 
 app.get('/trova-colonnine', function (req, res) {
 	
-	res.status(200);
+	res.status(200);    					// ho impostato un tempo di attesa di 200
 	
-	const geolib = require('geolib');
+	const geolib = require('geolib');      // chiamata alla libreria geolib
 	
 	var propertiesObject = { output:'json', latitude:req.query.latitude, longitude:req.query.longitude, maxresults:'10'};
 	

@@ -21,14 +21,17 @@ Il progetto Colonnina si pone come obiettivi primari:
 ## Relazione ##
 
 Il progetto svolge due funzioni principali:
-* La prima consiste nella realizzazione di un API (GET) in NodeJS;
-* La seconda invece riguarda l'implementazione di un client Html per i test e Java per il mobile.
+* La prima consiste nella realizzazione di un applicazione webAPI (GET/POST tramite protocollo HTTP) in NodeJS;
+* La seconda invece riguarda l'implementazione di un client Html per i test.
+* la terza e ultima parte un semplice client in Java per sistemi Android.
 
 <h1>Descrizione API </h1>
 In base al luogo scelto o alla posizione inviata dall'utente, l'API restituira' le colonnine.
 Il dato di uscita, sara' un file json che conterra' le informazioni richieste.
 
-Per poter utilizzare questo API, mi appoggio alle API di "openchargemap", le quali sono in formato json.
+Per poter utilizzare questo API, mi appoggio alle API di "[openchargemap]"(https://openchargemap.org/site), che mi
+restituiranno un json contenete diverse informazioni [esempio](https://api.openchargemap.io/v3/poi/?latidune=45&longitude=8&maxresults=1)
+
 
 Per la parte server ho utilizzato la piattaforma Glitch con una interfaccia client HTML utilizzata principalmente
 per testare le risposte Get e Post.
@@ -43,6 +46,7 @@ qua metterò le istruzioni di utilizzo con immagini caricate.
 ## Licenze ##
 
 [Glitch](https://glitch.com/legal/)
+[Geolib](https://github.com/manuelbieh/geolib/blob/master/LICENSE)
 
 ## altro ##
 
