@@ -1,13 +1,10 @@
 ## Progetto Piattaforme Digitali per la Gestione del Territorio ##
------------------------------------------------------
 
 ## Appello: ##
 * Sessione Autunno 2018/2019 
 
 ## Studente ##
 * [Luca Grasso](https://github.com/LucaGrasso)
-
------------------------------------------------------
 
 ## Descrizione generale del servizio ##
 
