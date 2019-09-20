@@ -35,7 +35,7 @@ Il progetto svolge due funzioni principali:
 * La seconda invece riguarda l'implementazione di un client Html per i test.
 * la terza e ultima parte un semplice client in Java per sistemi Android.
 
-<h1>Descrizione API </h1>
+## Descrizione API ##
 In base al luogo scelto o alla posizione inviata dall'utente, l'API restituira' le colonnine.
 Il dato di uscita, sara' un file json che conterra' le informazioni richieste.
 
