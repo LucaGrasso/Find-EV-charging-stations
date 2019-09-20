@@ -1,5 +1,3 @@
-Documento Alpha version
-
 ## Progetto Piattaforme Digitali per la Gestione del Territorio ##
 -----------------------------------------------------
 
@@ -12,7 +10,7 @@ Documento Alpha version
 -----------------------------------------------------
 
 ## Descrizione generale del servizio ##
------------------------------------------------------
+
 Servizio che consente, tramite una app android, all'utente di cercare una colonnina elettrica per ricaricare
 la propria auto proponento quella più vicina.
 
@@ -21,14 +19,17 @@ Quindi il progetto si pone come obiettivi primari:
 * Possibilità di inserire un commento per quella colonnina.
 
 ## API ##
------------------------------------------------------
+
 Per consentire il corretto funzionamento della piattoforma sono presenti delle richieste GET e POST.
 I dati sono forniti da [OpenChargeMap](https://openchargemap.org/site) in formato JSON.
+
 Ho creato un Webservice installa su Glitch che con metodi Get e Post comunica con OpenChargeMap e mi filtra
 esclusivamente le informazioni che servono al mio Client.
+
 Questo Webservice realizzato con NodeJS può essere utilizzato da qualsiasi client. Infatti sul server ho anche una
 versione HTML/JS che ho utlizzato come Test del Webservice.
-Documentazione API [SERVER.md](\SERVER.MD).
+
+Documentazione API [SERVER.md](https://github.com/LucaGrasso/Find-EV-charging-stations/blob/master/SERVER.md).
 
 ## Relazione ##
 
