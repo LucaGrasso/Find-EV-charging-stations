@@ -20,10 +20,10 @@ Quindi il progetto si pone come obiettivi primari:
 Per consentire il corretto funzionamento della piattoforma sono presenti delle richieste GET e POST.
 I dati sono forniti da [OpenChargeMap](https://openchargemap.org/site) in formato JSON.
 
-Ho creato un Webservice installa su Glitch che con metodi Get e Post comunica con OpenChargeMap e mi filtra
+Ho creato un WebAPI installa su Glitch che con metodi Get e Post comunica con OpenChargeMap e mi filtra
 esclusivamente le informazioni che servono al mio Client.
 
-Questo Webservice realizzato con NodeJS può essere utilizzato da qualsiasi client. Infatti sul server ho anche una
+Questo WebseAPI realizzato con NodeJS può essere utilizzato da qualsiasi client. Infatti sul server ho anche una
 versione HTML/JS che ho utlizzato come Test del Webservice.
 
 Documentazione API [SERVER.md](https://github.com/LucaGrasso/Find-EV-charging-stations/blob/master/SERVER.md).
@@ -35,22 +35,25 @@ Il progetto svolge due funzioni principali:
 * La seconda invece riguarda l'implementazione di un client Html per i test.
 * la terza e ultima parte un semplice client in Java per sistemi Android.
 
-## Descrizione API ##
-In base al luogo scelto o alla posizione inviata dall'utente, l'API restituira' le colonnine.
-Il dato di uscita, sara' un file json che conterra' le informazioni richieste.
+Concettualmente l'intenzione è quella di creare un aiuto per chi cerca una colonnina EV più vicina possibile.
+Quindi in base al luogo scelto o alla posizione inviata dall'utente, l'API restituira' la colonnina più vicina.
+Analizzato le numeto informazioni che ricevo da ["openchargemap"](https://openchargemap.org/site) attraverso la sua API
+ho scelto di filtrare solamente le informazioni di posizione e minimo power KW che necessita l'utente.
+Perchè dopo una analisi ho capito che la capità di erogazione determina anche il tipo di attacco necessario e il tempo di ricarica.
+Quindi ho creato una mia api appoggiata su [glitch](http://find-ev-charging-stations.glitch.me/) che svolge tutte le funzioni GET/POST
+che necessito.
 
-Per poter utilizzare questo API, mi appoggio alle API di ["openchargemap"](https://openchargemap.org/site), che mi
-restituiranno un json contenete diverse informazioni [esempio](https://api.openchargemap.io/v3/poi/?latidune=45&longitude=8&maxresults=1)
+Come detto in precedenza, mi appoggio alle API di ["openchargemap"](https://openchargemap.org/site), a questo link [guida api openhargemap](https://openchargemap.org/site/develop#api) si trova la guida all'APIche mi restituiranno un json contenete diverse informazioni qua un esempio di una informazione:
+* [esempio](https://api.openchargemap.io/v3/poi/?latidune=45&longitude=8&maxresults=1)
 
 
-Per la parte server ho utilizzato la piattaforma Glitch con una interfaccia client HTML utilizzata principalmente
+Per la parte server come accennato precedentemente, ho utilizzato la piattaforma Glitch con una interfaccia client HTML utilizzata principalmente
 per testare le risposte Get e Post.
 La interfaccia è raggiungibile da qua:
-[glitch](http://find-ev-charging-stations.glitch.me/)
+* [glitch](http://find-ev-charging-stations.glitch.me/)
 
-qua metterò le istruzioni di utilizzo con immagini caricate.
 
-<a><img src='Immagini/cerca.png' height='500' alt='ScreenShot'/></a>
+<a><img src='Immagini/01 htm-client.JPG' height='500' alt='ScreenShot'/></a>
 
 
 ## Licenze ##
