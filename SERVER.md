@@ -1,6 +1,6 @@
 ## Descrizione SERVER.JS ##
 
-Ho creato una web service per filtrare le informazioni da OpenChargeMap con metodi GET e POST
+Ho creato una webapi per filtrare le informazioni da OpenChargeMap con metodi GET e POST
 
 ### Richieste GET ###
 
@@ -10,16 +10,16 @@ Parametri Get:
  - Longitudine
  - MinPower
  
- ```javascript
+```javascript
 app.get('/trova-colonnine', function (req, res)
 ```
 Esempio get completo http://find-ev-charging-stations.glitch.me/trova-colonnine/?longitude=8&latitude=44&minpowerkw=2
 
 
 Chiamata per reperire tutti i commenti.
- - rows del database
+ - rows del database ( commento, id colonnina )
  
-  ```javascript
+```javascript
 app.get('/getCommenti', function(request, response)
 ```
 
@@ -27,4 +27,11 @@ Esempio get http://find-ev-charging-stations.glitch.me/getCommenti
 
 ### Richieste POST ###
 
+Chiamata per scrivere un commento all'interno del database
 
+ - commento
+ - id colonnina
+
+```javascript
+app.post('/storeComment', (request, response)
+```
