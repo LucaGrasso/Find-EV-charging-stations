@@ -46,21 +46,26 @@ che necessito.
 Come detto in precedenza, mi appoggio alle API di ["openchargemap"](https://openchargemap.org/site), a questo link [guida api openhargemap](https://openchargemap.org/site/develop#api) si trova la guida all'APIche mi restituiranno un json contenete diverse informazioni qua un esempio di una informazione:
 * [esempio](https://api.openchargemap.io/v3/poi/?latidune=45&longitude=8&maxresults=1)
 
+Per la parte server come accennato precedentemente, ho utilizzato la piattaforma Glitch come server di appoggio importando la cartella SERVER da git.
+In esse è presente l'API server.js messa nel main e le cartelle per una interfaccia client HTML/CSS/JS utilizzata principalmente per testare le risposte Get e Post.
 
-Per la parte server come accennato precedentemente, ho utilizzato la piattaforma Glitch con una interfaccia client HTML utilizzata principalmente
-per testare le risposte Get e Post.
 La interfaccia è raggiungibile da qua:
 * [glitch](http://find-ev-charging-stations.glitch.me/)
-
+e si presenterà in questo modo
 
 <a><img src='img/01 html-client.JPG' height='500' alt='ScreenShot'/></a>
 
+## Elenco delle licenze degli strumenti utilizzati##
+L'applicazione e servizi sono tutti Open Source / Free to use.
 
-## Licenze ##
-
+Strumenti:
+- [Open Charge Map](https://openchargemap.org/site/about/terms)
 - [Glitch](https://glitch.com/legal/)
 - [Geolib](https://github.com/manuelbieh/geolib/blob/master/LICENSE)
+- [SQLite](https://www.sqlite.org/copyright.html)
 
-## altro ##
+ Code Editor
+- [Visual Studio Code](https://code.visualstudio.com/license)
+- [Android Studio](https://developer.android.com/legal)
 
-se avrò altro da aggiungere.
+Questa applicazione ha uno scopo didattico.
