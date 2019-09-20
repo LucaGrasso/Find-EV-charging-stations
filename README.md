@@ -28,6 +28,7 @@ Ho creato un Webservice installa su Glitch che con metodi Get e Post comunica co
 esclusivamente le informazioni che servono al mio Client.
 Questo Webservice realizzato con NodeJS può essere utilizzato da qualsiasi client. Infatti sul server ho anche una
 versione HTML/JS che ho utlizzato come Test del Webservice.
+Documentazione API [SERVER.md](\SERVER.MD).
 
 ## Relazione ##
 
