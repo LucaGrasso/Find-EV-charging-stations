@@ -53,7 +53,7 @@ La interfaccia è raggiungibile da qua:
 * [glitch](http://find-ev-charging-stations.glitch.me/)
 
 
-<a><img src='Immagini/01 htm-client.JPG' height='500' alt='ScreenShot'/></a>
+<a><img src='img/01 htm-client.JPG' height='500' alt='ScreenShot'/></a>
 
 
 ## Licenze ##
