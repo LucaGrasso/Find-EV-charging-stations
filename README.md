@@ -55,7 +55,7 @@ e si presenterà in questo modo
 
 <a><img src='img/01 html-client.JPG' height='500' alt='ScreenShot'/></a>
 
-## Elenco delle licenze degli strumenti utilizzati##
+## Elenco delle licenze degli strumenti utilizzati ##
 L'applicazione e servizi sono tutti Open Source / Free to use.
 
 Strumenti:
@@ -67,5 +67,12 @@ Strumenti:
  Code Editor
 - [Visual Studio Code](https://code.visualstudio.com/license)
 - [Android Studio](https://developer.android.com/legal)
+
+
+OpenAPI documentazione:
+in corso di sistemazione.
+https://app.swaggerhub.com/apis/LucaGrasso/FindEV/1.0.0#/
+
+
 
 Questa applicazione ha uno scopo didattico.
