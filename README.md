@@ -26,7 +26,8 @@ esclusivamente le informazioni che servono al mio Client.
 Questo WebseAPI realizzato con NodeJS può essere utilizzato da qualsiasi client. Infatti sul server ho anche una
 versione HTML/JS che ho utlizzato come Test del Webservice.
 
-Documentazione API [SERVER.md](https://github.com/LucaGrasso/Find-EV-charging-stations/blob/master/SERVER.md).
+Documentazione su swaggerhub [Documentazione OpenApi](https://app.swaggerhub.com/apis-docs/LucaGrasso/FindEV/1.0.0-oas3)
+Documentazione su gitHub con esempi di chiamate [SERVER.md](https://github.com/LucaGrasso/Find-EV-charging-stations/blob/master/SERVER.md).
 
 ## Relazione ##
 
@@ -55,6 +56,10 @@ e si presenterà in questo modo
 
 <a><img src='img/01 html-client.JPG' height='500' alt='ScreenShot'/></a>
 
+## Client App Android ##
+
+Con l'utilizzo di Android Studio ho creato un applicazione client per sfruttare meglio il servizio creato.
+
 ## Elenco delle licenze degli strumenti utilizzati ##
 L'applicazione e servizi sono tutti Open Source / Free to use.
 
@@ -71,6 +76,7 @@ Strumenti:
 
 OpenAPI documentazione:
 Ogni informazione relativi all'APi la trovate a questo link:
+
 [Documentazione OpenApi](https://app.swaggerhub.com/apis-docs/LucaGrasso/FindEV/1.0.0-oas3)
 
 

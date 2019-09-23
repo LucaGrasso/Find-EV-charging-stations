@@ -142,11 +142,11 @@ app.get('/trova-colonnine', function (req, res) {
 	
 	const geolib = require('geolib');      // chiamata alla libreria geolib
 	
-	var propertiesObject = { output:'json', latitude:req.query.latitude, longitude:req.query.longitude, maxresults:'10'};
+	var propertiesObject = { output:'json', latitude:req.query.latitude, longitude:req.query.longitude, maxresults:'10'}; //chiamata per reperire le informazaioni
 	
-	var request = require("request");
+	var request = require("request"); // mando la richiesta
 
-  request({url:"https://api.openchargemap.io/v3/poi/", qs:propertiesObject}, function(error, response, body) {
+  request({url:"https://api.openchargemap.io/v3/poi/", qs:propertiesObject}, function(error, response, body) { // leggo quello che ricevo dalla chiamata
 		if(JSON.parse(body).length == 0){
 			var o = {};
 			res.json(o);
@@ -154,7 +154,7 @@ app.get('/trova-colonnine', function (req, res) {
 			var mindist = 0;
 			var nullpowercolonnine = [];
 			var mindata = {};
-			for(var i=0; i<9; i++){
+			for(var i=0; i<9; i++){                                // ottenute le 10 colonnine vicine ricerco la più vicina con Geolib
 				var colonnina = JSON.parse(body)[i];
 				var arrayconnections = colonnina.Connections;
 				var lat = colonnina.AddressInfo.Latitude;
@@ -180,18 +180,14 @@ app.get('/trova-colonnine', function (req, res) {
 					break;
 				}
 			}
-			
-			
-			
 		}
-		
 			if(nullpowercolonnine.length==0 && mindist == 0){
 				var o = {};
 				res.json(o);
 			} else {
 				//var finaldata = {'notnullcolonnina': mindata, 'nullcolonnina': nullpowercolonnine};
-        nullpowercolonnine.push(mindata);
-        var finaldata = nullpowercolonnine;
+        		nullpowercolonnine.push(mindata);
+        		var finaldata = nullpowercolonnine;
 				res.json(finaldata);
 			}               
 		
