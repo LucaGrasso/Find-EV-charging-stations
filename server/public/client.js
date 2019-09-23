@@ -22,10 +22,6 @@ const longitudineInput = colsForm.elements['longitudine'];
 const minpowerkwInput = colsForm.elements['minpowerkw'];
 const bottoneCerca = colsForm.elements['submit-trova'];
 
-const resetDBList = document.getElementById('resetLDB');
-const resetDB = document.getElementById('resetDB');
-const resetDBForm = document.forms[2];
-
 latitudineInput.addEventListener('change', controllaLatitudine);
 longitudineInput.addEventListener('change', controllaLongitudine);
 minpowerkwInput.addEventListener('change', controllaMinPowerKW);
@@ -88,16 +84,6 @@ const getCommentsListener = function() {
     appendNewComment(row.commento + ", colonnina: " + row.colonnina);
   });
 }
-
-const getResetDBListener = function() {
-  // parse our response to convert to JSON
-  console.log('hello sono qua dentro');
-  const newListItem = document.createElement('p');
-  newListItem.innerHTML = "Tutti i Record sono stati cancellati";
-  resetDB.appendChild(newListItem);
-  resetDBList.appendChild(newListItem);
-}
-
 
 const getColsListener = function() {
   
