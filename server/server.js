@@ -157,6 +157,7 @@ app.get('/trova-colonnine', function (req, res) {
 			for(var i=0; i<9; i++){                                // ottenute le 10 colonnine vicine ricerco la più vicina con Geolib
 				var colonnina = JSON.parse(body)[i];
 				var arrayconnections = colonnina.Connections;
+				var id = colonnina.ID;
 				var lat = colonnina.AddressInfo.Latitude;
 				var lon = colonnina.AddressInfo.Longitude;
 				var dist = geolib.getDistance(
@@ -171,11 +172,11 @@ app.get('/trova-colonnine', function (req, res) {
 					
 					if(dist < mindist || mindist == 0) {
 						mindist = dist;
-						mindata = {'Latitude': lat, 'Longitude': lon, 'distance': mindist};
+						mindata = {'Latitude': lat, 'Longitude': lon, 'distance': mindist, 'id': id};
 					}
 					break;	
 				} else if(arrayconnections[j].PowerKW == 'undefined'){
-					var newdata = {'Latitude': lat, 'Longitude': lon, 'distance': dist};
+					var newdata = {'Latitude': lat, 'Longitude': lon, 'distance': dist, 'id': id};
 					nullpowercolonnine.push(newdata);
 					break;
 				}
