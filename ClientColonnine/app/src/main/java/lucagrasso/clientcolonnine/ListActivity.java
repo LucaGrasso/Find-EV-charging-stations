@@ -49,6 +49,8 @@ public class ListActivity extends AppCompatActivity {
         String latitudine = getIntent().getStringExtra("latitudine");
         String longitudine = getIntent().getStringExtra("longitudine");
         String minpowerkw = getIntent().getStringExtra("minpowerkw");
+        String mylatitudine = getIntent().getStringExtra("mylatitudine");
+        String mylongitudine = getIntent().getStringExtra("mylongitudine");
 
         // costruisco l'url a cui fare la richiesta
         String url = "https://find-ev-charging-stations.glitch.me/trova-colonnine/?";
@@ -60,7 +62,8 @@ public class ListActivity extends AppCompatActivity {
         final ArrayList<Colonnina> colonnine = new ArrayList<Colonnina>();
 
         // costruisco l'arrayadapter che gestisce il layout dell'elenco delle colonnine
-        arrayAdapter = new ColonninaArrayAdapter(this, 0, colonnine);
+        boolean currentPos = latitudine.equals(mylatitudine) && longitudine.equals(mylongitudine);
+        arrayAdapter = new ColonninaArrayAdapter(this, 0, colonnine, currentPos);
 
         // collego l'arrayadapter alla listview
         lv.setAdapter(arrayAdapter);
@@ -125,12 +128,14 @@ public class ListActivity extends AppCompatActivity {
         private Context context;
         private List<Colonnina> colonnine;
         private Colonnina col;
+        private boolean currentPos;
 
-        public ColonninaArrayAdapter(Context context, int resource, ArrayList<Colonnina> objects) {
+        public ColonninaArrayAdapter(Context context, int resource, ArrayList<Colonnina> objects, boolean currentPos) {
             super(context, resource, objects);
 
             this.context = context;
             this.colonnine = objects;
+            this.currentPos = currentPos;
         }
 
         // creazione dell'elemento grafico che contiene i dati di una colonnina
@@ -170,6 +175,7 @@ public class ListActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Uri gmmIntentUri = Uri.parse("google.navigation:q=" + col.getLatitudine()+","+col.getLongitudine());
+                    
                     Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
                     mapIntent.setPackage("com.google.android.apps.maps");
                     startActivity(mapIntent);

@@ -8,46 +8,21 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.os.AsyncTask;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import android.os.AsyncTask;
-import android.os.Bundle;
-import android.app.Activity;
-import android.content.Intent;
-import android.view.View;
+import android.location.LocationManager;
+import android.location.LocationListener;
 import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.Toast;
+import android.content.Context;
+
 import android.util.Log;
-import java.util.Map;
-import java.util.HashMap;
+import android.support.v4.app.ActivityCompat;
+import android.Manifest;
+import android.content.pm.PackageManager;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import android.location.Location;
 
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.RequestQueue;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements  ActivityCompat.OnRequestPermissionsResultCallback{
 
     private String TAG = "MyActivity";
     private EditText latInput;
@@ -55,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText minpowerkwInput;
 
     private boolean isValidLat = false, isValidLon = false, isValidMin = false;
+
+    private double lat, lon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,10 +45,38 @@ public class MainActivity extends AppCompatActivity {
         latInput = (EditText) findViewById(R.id.Latitudine);
         lonInput = (EditText) findViewById(R.id.Longitudine);
         minpowerkwInput = (EditText) findViewById(R.id.minPowerKW);
+        final Button btn1 = (Button) findViewById(R.id.preleva_coordinate);
 
         btn.setEnabled(false);
 
-        // applico un onclick listener al bottone: quando l'utente clicca sul bottone,
+        boolean permissionGranted = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
+
+        if(permissionGranted) {
+            Log.i(TAG, "granted");
+            LocationManager locManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            LocationListener locListener = new MyLocationListener();
+            try {
+                locManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locListener);
+                List<String> providers = locManager.getProviders(true);
+                Location loc = null;
+                for (String provider : providers) {
+                    loc = locManager.getLastKnownLocation(provider);
+                    if (loc == null) {
+                        continue;
+                    }
+                }
+
+                lat = loc.getLatitude();
+                lon = loc.getLongitude();
+            } catch (SecurityException ex) {
+                Log.i(TAG, ex.getMessage() + ex.toString());
+            }
+        } else {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 200);
+        }
+
+
+    // applico un onclick listener al bottone: quando l'utente clicca sul bottone,
         // si apre la activity ListActivity e si passa a questa activity i dati
         // inseriti dall'utente (latitudine, longitudine, minpowerkw)
         btn.setOnClickListener(new View.OnClickListener() {
@@ -82,8 +87,18 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("longitudine", lonInput.getText().toString());
                 intent.putExtra("latitudine", latInput.getText().toString());
                 intent.putExtra("minpowerkw", minpowerkwInput.getText().toString());
+                intent.putExtra("mylongitudine", lon);
+                intent.putExtra("mylatitudine", lat);
 
                 startActivity(intent);
+            }
+        });
+
+        btn1.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                latInput.setText(lat+"");
+                lonInput.setText(lon+"");
             }
         });
 
@@ -166,7 +181,41 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public class MyLocationListener implements LocationListener
+    {
 
+        @Override
+        public void onLocationChanged(Location loc){
+            lat = loc.getLatitude();
+            lon = loc.getLongitude();
+        }
+
+        @Override
+        public void onProviderDisabled(String provider){
+
+        }
+
+        @Override
+        public void onProviderEnabled(String provider){
+
+        }
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras){
+
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case 200: {
+                if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // {Some Code}
+                }
+            }
+        }
+    }
 
 
 

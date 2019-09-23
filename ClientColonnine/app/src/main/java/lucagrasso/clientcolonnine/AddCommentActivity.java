@@ -40,7 +40,7 @@ public class AddCommentActivity extends AppCompatActivity {
         });
     }
 
-    // metodo che chiama il servizio https://lumbar-check.glitch.me/storeComment/ per caricare un commento
+    // metodo che chiama il servizio https://find-ev-charging-stations.glitch.me/storeComment/ per caricare un commento
     private void inviaCommento(final int id, final String commento) {
 
         String url = "https://find-ev-charging-stations.glitch.me/storeComment/?";
