@@ -70,9 +70,8 @@ Strumenti:
 
 
 OpenAPI documentazione:
-in corso di sistemazione.
-https://app.swaggerhub.com/apis/LucaGrasso/FindEV/1.0.0#/
-
+Ogni informazione relativi all'APi la trovate a questo link:
+[Documentazione OpenApi](https://app.swaggerhub.com/apis-docs/LucaGrasso/FindEV/1.0.0-oas3)
 
 
 Questa applicazione ha uno scopo didattico.
