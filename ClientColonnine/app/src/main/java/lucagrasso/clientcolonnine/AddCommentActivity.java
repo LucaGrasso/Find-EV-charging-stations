@@ -43,7 +43,7 @@ public class AddCommentActivity extends AppCompatActivity {
     // metodo che chiama il servizio https://lumbar-check.glitch.me/storeComment/ per caricare un commento
     private void inviaCommento(final int id, final String commento) {
 
-        String url = "https://lumbar-check.glitch.me/storeComment/?";
+        String url = "https://find-ev-charging-stations.glitch.me/storeComment/?";
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     @Override

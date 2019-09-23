@@ -51,7 +51,7 @@ public class ListActivity extends AppCompatActivity {
         String minpowerkw = getIntent().getStringExtra("minpowerkw");
 
         // costruisco l'url a cui fare la richiesta
-        String url = "http://find-ev-charging-stations.glitch.me/trova-colonnine/?";
+        String url = "https://find-ev-charging-stations.glitch.me/trova-colonnine/?";
         url = url + "latitude=" + latitudine + "&";
         url = url + "longitude=" + longitudine + "&";
         url = url + "minpowerkw=" + minpowerkw;
