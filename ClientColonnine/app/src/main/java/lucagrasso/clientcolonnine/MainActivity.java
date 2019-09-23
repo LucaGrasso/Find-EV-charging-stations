@@ -3,6 +3,8 @@ package lucagrasso.clientcolonnine;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -52,50 +54,118 @@ public class MainActivity extends AppCompatActivity {
     private EditText lonInput;
     private EditText minpowerkwInput;
 
+    private boolean isValidLat = false, isValidLon = false, isValidMin = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        // creo il layout della activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // creo delle variabili che si riferiscono agli elementi della activity: bottone submit, caselle di testo
         final Button btn = (Button) findViewById(R.id.cerca);
         latInput = (EditText) findViewById(R.id.Latitudine);
         lonInput = (EditText) findViewById(R.id.Longitudine);
         minpowerkwInput = (EditText) findViewById(R.id.minPowerKW);
 
+        btn.setEnabled(false);
+
+        // applico un onclick listener al bottone: quando l'utente clicca sul bottone,
+        // si apre la activity ListActivity e si passa a questa activity i dati
+        // inseriti dall'utente (latitudine, longitudine, minpowerkw)
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String url = "https://lumbar-check.glitch.me/trova-colonnine/?";
-                url = url + "latitude=" + latInput.getText().toString() + "&";
-                url = url + "longitude=" + lonInput.getText().toString() + "&";
-                url = url + "minpowerkw=" + minpowerkwInput.getText().toString();
+                Intent intent = new Intent(getBaseContext(), ListActivity.class);
+                intent.putExtra("longitudine", lonInput.getText().toString());
+                intent.putExtra("latitudine", latInput.getText().toString());
+                intent.putExtra("minpowerkw", minpowerkwInput.getText().toString());
+
+                startActivity(intent);
+            }
+        });
 
 
-                    JsonArrayRequest jsonObjectRequest = new JsonArrayRequest
-                            (Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+        // ogni casella di testo ha un listener che controlla se i dati inseriti sono numeri
+        // validi, se così non è non viene attivato il bottone ricerca
+        latInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                                @Override
-                                public void onResponse(JSONArray response) {
-                                    //Toast.makeText(getApplicationContext(), response.length(), Toast.LENGTH_LONG).show();
-                                    Log.i(TAG, response.toString() + response.length());
-                                }
-                            }, new Response.ErrorListener() {
+            }
 
-                                @Override
-                                public void onErrorResponse(VolleyError error) {
-                                    Log.i(TAG, "errore" + error.getMessage() + error.toString());
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                                }
-                            });
+            }
 
-                    MyApplication.getInstance().addToRequestQueue(jsonObjectRequest, MyApplication.TAG);
+            @Override
+            public void afterTextChanged(Editable s) {
+                try {
+                    Double.parseDouble(s.toString());
+                    isValidLat = true;
+                    if(isValidLon && isValidMin)
+                        btn.setEnabled(true);
+                } catch (NumberFormatException ex){
+                    isValidLat = false;
+                    btn.setEnabled(false);
+                }
+            }
+        });
 
+        lonInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
 
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                try {
+                    Double.parseDouble(s.toString());
+                    isValidLon = true;
+                    if(isValidLat && isValidMin)
+                        btn.setEnabled(true);
+                } catch (NumberFormatException ex){
+                    isValidLon = false;
+                    btn.setEnabled(false);
+                }
+            }
+        });
+
+        minpowerkwInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                try {
+                    Integer.parseInt(s.toString());
+                    isValidMin = true;
+                    if(isValidLon && isValidLat)
+                        btn.setEnabled(true);
+                } catch (NumberFormatException ex){
+                    isValidMin = false;
+                    btn.setEnabled(false);
+                }
             }
         });
     }
+
 
 
 

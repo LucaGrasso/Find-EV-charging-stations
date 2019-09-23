@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ClientColonnine</string>
+    <string name="title_activity_comment">CommentActivity</string>
 </resources>

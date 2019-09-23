@@ -60,6 +60,21 @@ e si presenterà in questo modo
 
 Con l'utilizzo di Android Studio ho creato un applicazione client per sfruttare meglio il servizio creato.
 
+Qua inserisco le mie cordinate e la min power KW che cerco.
+appena inserito i dati, l'applicazione abilita il cerca.
+<a><img src='img/appClient01.JPG' height='500' alt='ScreenShot'/></a>
+<a><img src='img/appClient02.JPG' height='500' alt='ScreenShot'/></a>
+
+viene assegnato un ID all'utente e se viene trovata una colonnina vicina
+viene proposta se si vuole vedere la distanza attraverso la mappa di google
+oppure mettere un commento per la colonnina utilizzata
+<a><img src='img/appClient03.JPG' height='500' alt='ScreenShot'/></a>
+
+qua insetisco un commento, apparirà un pop up all'invio.
+<a><img src='img/appClient04.JPG' height='500' alt='ScreenShot'/></a>
+<a><img src='img/appClient05.JPG' height='500' alt='ScreenShot'/></a>
+
+
 ## Elenco delle licenze degli strumenti utilizzati ##
 L'applicazione e servizi sono tutti Open Source / Free to use.
 
