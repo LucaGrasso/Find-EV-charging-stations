@@ -5,6 +5,7 @@
 
 ## Studente ##
 * [Luca Grasso](https://github.com/LucaGrasso)
+* Matricola 294612
 
 ## Descrizione generale del servizio ##
 
@@ -61,7 +62,9 @@ e si presenterà in questo modo
 Con l'utilizzo di Android Studio ho creato un applicazione client per sfruttare meglio il servizio creato.
 
 Qua inserisco le mie cordinate e la min power KW che cerco.
-appena inserito i dati, l'applicazione abilita il cerca.
+Ho la possibilita di ricavare la mia posizione.
+Appena inseriti tutti i dati, l'applicazione abilita il cerca.
+
 <a><img src='img/appClient01.JPG' height='300' alt='ScreenShot'/></a>
 <a><img src='img/appClient02.JPG' height='300' alt='ScreenShot'/></a>
 
@@ -71,7 +74,11 @@ oppure mettere un commento per la colonnina utilizzata
 
 <a><img src='img/appClient03.JPG' height='300' alt='ScreenShot'/></a>
 
-qua insetisco un commento, apparirà un pop up all'invio.
+attraverso la posizione ricavata posso aprire googlemaps e farmi indicare la strada.
+
+<a><img src='img/appClient03a.JPG' height='300' alt='ScreenShot'/></a>
+
+con l'opzione aggiungi commento, inserisco un commento, apparirà un pop up all'invio.
 
 <a><img src='img/appClient04.JPG' height='300' alt='ScreenShot'/></a>
 <a><img src='img/appClient05.JPG' height='300' alt='ScreenShot'/></a>
