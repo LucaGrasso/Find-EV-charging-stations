@@ -30,22 +30,54 @@
       </h1>
     </header>
 
+    <!-- This is a static file -->
+<!-- served from your routes in server.js -->
+
+<!-- You might want to try something fancier: -->
+<!-- html/nunjucks docs: https://mozilla.github.io/nunjucks/ -->
+<!-- pug: https://pugjs.org/ -->
+<!-- haml: http://haml.info/ -->
+<!-- hbs(handlebars): http://handlebarsjs.com/ -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Html client</title>
+    <meta name="description" content="Ricerca e recensione di colonnine di ricarica">
+    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+    
+    <!-- import the webpage's client-side javascript file -->
+    <script src="/client.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>
+        Inserimento commenti
+      </h1>
+    </header>
+    
     <main>
+         
       <p class="bold">Caricare un commento</p>
-      
       <p>Inserisci un commento e l'id della colonnina:</p>
       
       <form action="/storeComment" method="POST">
         <input name="commento" type="text" maxlength="100" placeholder="Commento!" aria-labelledby="submit-commento">
         <input name="colonnina" type="text" maxlength="100" placeholder="Id colonnina!" aria-labelledby="submit-commento">
         
-        <button type="submit" id="submit-commento">Submit Commento</button>
+        <button type="submit" id="submit-commento">Submit Commento</button>   
       </form>
-    
+
       <section class="commenti">
         <ul id="commenti"></ul>
       </section>
-      
+
       <h1>
         Cerca una colonnina
       </h1>
@@ -57,12 +89,20 @@
         <button type="submit" id="submit-trova" disabled="true" class="disattivo">Cerca</button>
       </form>
       
-      <div id="resDiv">
-        
-      </div>
+      <div id="resDiv"></div>
       
       <section class="colonnine">
         <ul id="colonnine"></ul>
+      </section>
+      
+      <form action="/deleteComments" method="POST">
+        <button type="submit" id="reset-database">Reset Database</button>
+      </form>
+      
+      <div id="resetDB"></div>
+      
+      <section class="resetLDB">
+        <ul id="resetLDB"></ul>
       </section>
       
     </main>

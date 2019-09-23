@@ -107,12 +107,38 @@ app.post('/storeComment', (request, response) => {                    // /storeC
   response.sendFile('views/index.html', {root: __dirname }) 		  // rispondo al servizio
 });
 
-// 3) Metodo GET per ricerca della colonnina con parametri di longitudine latitudine e potenza minima della torretta
-// ho utilizzato una libreria geolib per trovare la distanza minima tramite longitudine e latitudine
+// 3) metodo post utilizzato solo sul HTML server per resettare completamente il mio database non utilizzata nell'app Java
 
+app.post('/deleteComments', (request, response) => {
+	
+	/* codice per utilizzare una cancellazione puntuale
+	let id = 1;   						
+	 delete a row based on id
+	db.run(`DELETE FROM Commenti WHERE rowid=?`, id, function(err) {
+	*/
+
+	 db.run(`DELETE FROM Commenti`, function(err) {
+	  if (err) {
+		return console.error(err.message);
+	  }
+	  console.log(`Row(s) deleted ${this.changes}`);
+	  })
+	  response.sendFile('views/index.html', {root: __dirname })
+	});
+   
+  // close the database connection
+  //db.close((err) => {
+  //  if (err) {
+  //    return console.error(err.message);
+  //  }
+  // });
+  
+
+// 4) Metodo GET per ricerca della colonnina con parametri di longitudine latitudine e potenza minima della torretta
+// ho utilizzato una libreria geolib per trovare la distanza minima tramite longitudine e latitudine
 app.get('/trova-colonnine', function (req, res) {
 	
-	res.status(200);    					// ho impostato un tempo di attesa di 200
+	res.status(200);    					
 	
 	const geolib = require('geolib');      // chiamata alla libreria geolib
 	

@@ -1,8 +1,6 @@
 // client-side js
 // run by the browser each time your view template referencing it is loaded
 
-console.log('hello world :o');
-
 let comments = [];
 let cols = [];
 
@@ -23,6 +21,10 @@ const latitudineInput = colsForm.elements['latitudine'];
 const longitudineInput = colsForm.elements['longitudine'];
 const minpowerkwInput = colsForm.elements['minpowerkw'];
 const bottoneCerca = colsForm.elements['submit-trova'];
+
+const resetDBList = document.getElementById('resetLDB');
+const resetDB = document.getElementById('resetDB');
+const resetDBForm = document.forms[2];
 
 latitudineInput.addEventListener('change', controllaLatitudine);
 longitudineInput.addEventListener('change', controllaLongitudine);
@@ -87,6 +89,16 @@ const getCommentsListener = function() {
   });
 }
 
+const getResetDBListener = function() {
+  // parse our response to convert to JSON
+  console.log('hello sono qua dentro');
+  const newListItem = document.createElement('p');
+  newListItem.innerHTML = "Tutti i Record sono stati cancellati";
+  resetDB.appendChild(newListItem);
+  resetDBList.appendChild(newListItem);
+}
+
+
 const getColsListener = function() {
   
   colsList.innerHTML = "";
@@ -95,8 +107,8 @@ const getColsListener = function() {
   
   if(isEmpty(cols)){
     const newListItem = document.createElement('p');
-  newListItem.innerHTML = "Nessuna colonnina trovata in questa zona";
-  resDiv.appendChild(newListItem);
+    newListItem.innerHTML = "Nessuna colonnina trovata in questa zona";
+    resDiv.appendChild(newListItem);
   }
 
   // iterate through every dream and add it to our page
@@ -110,6 +122,8 @@ const commentsRequest = new XMLHttpRequest();
 commentsRequest.onload = getCommentsListener;
 commentsRequest.open('get', '/getCommenti');
 commentsRequest.send();
+
+
 
 // a helper function that creates a list item for a given dream
 const appendNewComment = function(comment) {
@@ -129,9 +143,9 @@ colsForm.onsubmit = function(event) {
   event.preventDefault();
 
   const colRequest = new XMLHttpRequest();
-colRequest.onload = getColsListener;
-colRequest.open('get', '/trova-colonnine/?latitude=' + latitudineInput.value + "&longitude=" + longitudineInput.value + "&minpowerkw=" + minpowerkwInput.value);
-colRequest.send();
+  colRequest.onload = getColsListener;
+  colRequest.open('get', '/trova-colonnine/?latitude=' + latitudineInput.value + "&longitude=" + longitudineInput.value + "&minpowerkw=" + minpowerkwInput.value);
+  colRequest.send();
   
   // reset form 
   latitudineInput.value = '';
