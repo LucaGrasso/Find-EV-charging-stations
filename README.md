@@ -97,8 +97,8 @@ Strumenti:
 - [Android Studio](https://developer.android.com/legal)
 
 
-OpenAPI documentazione:
-Ogni informazione relativi all'APi la trovate a questo link:
+## OpenAPI documentazione ##
+Il link sottostante collega al sito Swagger con la quale si ha l'opportunità di poter osservare più intuitivamente il comportamento della API, e scaricare la documentazione nel formato OpenApi 3.0.
 
 [Documentazione OpenApi](https://app.swaggerhub.com/apis-docs/LucaGrasso/FindEV/1.0.0-oas3)
 
