@@ -9,6 +9,7 @@ Parametri Get:
  - Latitudine
  - Longitudine
  - MinPower
+ - Id
  
 ```javascript
 app.get('/trova-colonnine', function (req, res)
