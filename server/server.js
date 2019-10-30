@@ -161,7 +161,7 @@ app.get('/trova-colonnine', function (req, res) {
 				var lat = colonnina.AddressInfo.Latitude;
 				var lon = colonnina.AddressInfo.Longitude;
 				var dist = geolib.getDistance(
-					{ latitude: parseFloat(req.query.latitude), longitude: parseFloat(req.query.latitude) },
+					{ latitude: parseFloat(req.query.latitude), longitude: parseFloat(req.query.longitude) },
 					{ latitude: parseFloat(lat), longitude: parseFloat(lon) }
 				);
 					
